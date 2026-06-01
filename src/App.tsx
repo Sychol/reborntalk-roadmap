@@ -5,7 +5,8 @@ import RoadmapDetail from "./components/RoadmapDetail";
 import RoadmapTimeline from "./components/RoadmapTimeline";
 import SourceBasis from "./components/SourceBasis";
 import TaskMatrix from "./components/TaskMatrix";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const navItems = [
   { href: "#summary", label: "요약" },
@@ -43,6 +44,7 @@ export default function App() {
         <NextActions />
       </main>
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
