@@ -13,16 +13,24 @@ export default function RoadmapTimeline() {
         </p>
       </div>
       <ol className="timeline" aria-label="리본톡 로드맵 요약 단계">
-        {roadmapStages.map((stage) => (
-          <li className="timeline__item" key={stage.id}>
-            <span className="timeline__number">{stage.order}</span>
-            <div>
-              <h3>{stage.shortTitle}</h3>
-              <p>{stage.timeframe}</p>
-              <StatusBadge status={stage.status} />
-            </div>
-          </li>
-        ))}
+        {roadmapStages.map((stage) => {
+          const isActive = stage.status === "in-progress";
+
+          return (
+            <li
+              className={`timeline__item${isActive ? " timeline__item--active" : ""}`}
+              key={stage.id}
+              aria-current={isActive ? "step" : undefined}
+            >
+              <span className="timeline__number">{stage.order}</span>
+              <div>
+                <h3>{stage.shortTitle}</h3>
+                <p>{stage.timeframe}</p>
+                <StatusBadge status={stage.status} />
+              </div>
+            </li>
+          );
+        })}
       </ol>
     </section>
   );

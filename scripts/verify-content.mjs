@@ -34,6 +34,7 @@ const sourceFiles = Object.fromEntries(
 );
 
 const heroSource = read("src/components/Hero.tsx");
+const timelineSource = read("src/components/RoadmapTimeline.tsx");
 const combined = Object.values({ ...files, ...sourceFiles }).join("\n");
 
 const requiredSections = [
@@ -154,12 +155,20 @@ if (heroSource.includes("hero.finalGoal") || heroSource.includes("hero.currentSt
   failures.push("Hero must not render the old finalGoal/currentStage summary cards");
 }
 
-if (!heroSource.includes("roadmapStages")) {
-  failures.push("Hero must source its right-side roadmap progress panel from roadmapStages");
+if (heroSource.includes("roadmapStages") || heroSource.includes("hero__roadmap")) {
+  failures.push("Hero must not render the roadmap progress panel");
 }
 
-if (!heroSource.includes('stage.status === "in-progress"')) {
-  failures.push('Hero must filter roadmap stages by stage.status === "in-progress"');
+if (!timelineSource.includes('stage.status === "in-progress"')) {
+  failures.push('RoadmapTimeline must detect active stages with stage.status === "in-progress"');
+}
+
+if (!timelineSource.includes("timeline__item--active")) {
+  failures.push("RoadmapTimeline must apply an active class to in-progress stages");
+}
+
+if (!timelineSource.includes("현재 진행 중")) {
+  failures.push("RoadmapTimeline must label the active stage as currently in progress");
 }
 
 if (heroSource.includes("hero.keywords")) {

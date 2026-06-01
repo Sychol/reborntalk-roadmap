@@ -106,7 +106,7 @@ export const roadmapStages: RoadmapStage[] = [
   {
     id: "foundation",
     order: 1,
-    shortTitle: "기반 정리",
+    shortTitle: "기획 및 범위 설정",
     title: "현재 제품 기반 및 시제품 범위 설정",
     timeframe: "2026 Q2",
     status: "in-progress",

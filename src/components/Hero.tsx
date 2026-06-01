@@ -1,5 +1,5 @@
-import { hero, readinessChecklist, roadmapStages } from "../data/roadmap";
-import { ChecklistStatusBadge, StatusBadge } from "./StatusBadge";
+import { hero, readinessChecklist } from "../data/roadmap";
+import { ChecklistStatusBadge } from "./StatusBadge";
 
 const inProgressItems = readinessChecklist.flatMap((group) =>
   group.items
@@ -10,8 +10,6 @@ const inProgressItems = readinessChecklist.flatMap((group) =>
       status: item.status,
     })),
 );
-
-const inProgressStages = roadmapStages.filter((stage) => stage.status === "in-progress");
 
 export default function Hero() {
   return (
@@ -35,24 +33,6 @@ export default function Hero() {
             </ul>
           </div>
         </div>
-      </div>
-      <div className="hero__aside hero__roadmap-panel" aria-label="로드맵 진행 현황">
-        <span className="aside-label">현재 로드맵 진행 단계</span>
-        <div className="hero__roadmap-count">
-          <strong>{inProgressStages.length}</strong>
-          <span>/ {roadmapStages.length}단계</span>
-        </div>
-        <p>현재 진행 중인 로드맵 단계입니다.</p>
-        <ul className="hero__roadmap-list">
-          {inProgressStages.map((stage) => (
-            <li key={stage.id}>
-              <span className="hero__roadmap-step">{stage.order}단계</span>
-              <strong>{stage.shortTitle}</strong>
-              <span>{stage.title}</span>
-              <StatusBadge status={stage.status} />
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
