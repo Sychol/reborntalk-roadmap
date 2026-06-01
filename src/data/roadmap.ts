@@ -76,7 +76,7 @@ export const statusDescriptions: Record<RoadmapStatus, string> = {
 
 export const checklistStatusLabels: Record<ChecklistStatus, string> = {
   ready: "기반 있음",
-  "in-progress": "정리 중",
+  "in-progress": "진행 중",
   planned: "준비 예정",
   later: "후속 과제",
 };
@@ -324,7 +324,7 @@ export const roadmapStages: RoadmapStage[] = [
     order: 5,
     shortTitle: "품질·인증",
     title: "품질·보안·성능 검증 및 인증 준비",
-    timeframe: "2027 H1-H2",
+    timeframe: "2027 Q1-Q3",
     status: "planned",
     goal: "기관 공급과 조달 진입을 위해 품질, 보안, 개인정보, AI 성능, 데이터 품질을 검증 가능한 문서와 시험자료로 준비합니다.",
     developmentTasks: [
@@ -377,7 +377,7 @@ export const roadmapStages: RoadmapStage[] = [
     order: 6,
     shortTitle: "기관 공급",
     title: "기관 공급 패키지화 및 공공조달 확산",
-    timeframe: "2027 H2 - 2028",
+    timeframe: "2027 Q3 - 2028",
     status: "long-term",
     goal: "소방본부·소방서가 실제 구매 검토할 수 있는 상품, 제안서, 가격, 운영 문서, 조달 등록 경로를 완성합니다.",
     developmentTasks: [
@@ -465,25 +465,27 @@ export const readinessChecklist: ReadinessGroup[] = [
     group: "제품 완성도",
     items: [
       { title: "사용자 웹앱 v1.0 범위", status: "in-progress" },
-      { title: "관리자 대시보드 지표", status: "in-progress" },
-      { title: "통합 선별·라우팅 엔진", status: "planned" },
+      { title: "통합 선별·라우팅 엔진", status: "in-progress" },
+      { title: "심리 개입 콘텐츠 개발", status: "planned" },
+      { title: "기관 관리자 대시보드", status: "later" },
       { title: "고위험 알림 흐름", status: "later" },
     ],
   },
   {
     group: "데이터·실증",
     items: [
-      { title: "RAG 데이터 300건 이상 목표", status: "in-progress" },
+      { title: "통합 선별용 데이터 수집", status: "in-progress" },
+      { title: "근거 논문 작성", status: "in-progress" },
+      { title: "RAG용 인터뷰 데이터 수집", status: "in-progress" },
       { title: "회복사례 태그 체계", status: "planned" },
-      { title: "파일럿 운영계획", status: "later" },
-      { title: "파일럿 결과보고서", status: "later" },
+      { title: "파일럿 운영 및 결과보고서", status: "later" },
     ],
   },
   {
     group: "개인정보·보안",
     items: [
       { title: "민감정보 처리 원칙", status: "in-progress" },
-      { title: "접근권한과 로그 정책", status: "in-progress" },
+      { title: "접근권한과 로그 정책", status: "planned" },
       { title: "파기와 위탁관리 기준", status: "planned" },
       { title: "기관 보안 검토 자료", status: "later" },
     ],
@@ -500,7 +502,8 @@ export const readinessChecklist: ReadinessGroup[] = [
   {
     group: "인증·조달",
     items: [
-      { title: "GS 인증 준비 문서", status: "later" },
+      { title: "지식재산권 확보", status: "later" },
+      { title: "GS 인증 준비", status: "later" },
       { title: "물품식별번호 등록", status: "later" },
       { title: "나라장터·벤처나라 등록", status: "later" },
       { title: "우수조달 준비 패키지", status: "later" },
