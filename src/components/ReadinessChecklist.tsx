@@ -5,8 +5,8 @@ export default function ReadinessChecklist() {
   return (
     <section className="section" id="readiness" aria-labelledby="readiness-title">
       <div className="section__header">
-        <p className="eyebrow">Evidence and output checklist</p>
-        <h2 id="readiness-title">기관 공급 준비 체크리스트</h2>
+        <p className="eyebrow">Service Rediness checklist</p>
+        <h2 id="readiness-title">서비스 준비 체크리스트</h2>
         <p>
           제품 완성도, 데이터·실증, 개인정보·보안, 품질·성능, 인증·조달, 제안자료를
           한 번에 점검할 수 있도록 상태를 나눴습니다.

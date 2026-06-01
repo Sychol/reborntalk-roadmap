@@ -11,11 +11,11 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 const navItems = [
   { href: "#summary", label: "요약" },
   { href: "#overview", label: "로드맵" },
-  { href: "#stages", label: "단계 카드" },
-  { href: "#matrix", label: "과제 비교" },
-  { href: "#readiness", label: "준비 항목" },
-  { href: "#basis", label: "근거" },
-  { href: "#next", label: "다음 작업" },
+  { href: "#readiness", label: "체크리스트" },
+  { href: "#basis", label: "가이드라인" },
+  { href: "#stages", label: "단계별 세부 내용" },
+  { href: "#matrix", label: "개발-공급 연결" },
+  { href: "#next", label: "다음 목표" },
 ];
 
 export default function App() {
@@ -37,10 +37,10 @@ export default function App() {
       <main>
         <Hero />
         <RoadmapTimeline />
-        <RoadmapDetail />
-        <TaskMatrix />
         <ReadinessChecklist />
         <SourceBasis />
+        <RoadmapDetail />
+        <TaskMatrix />
         <NextActions />
       </main>
       <Analytics />

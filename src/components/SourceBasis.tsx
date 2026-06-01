@@ -4,7 +4,7 @@ export default function SourceBasis() {
   return (
     <section className="section section--split" id="basis" aria-labelledby="basis-title">
       <div className="section__header">
-        <p className="eyebrow">Certification and institution-supply readiness track</p>
+        <p className="eyebrow">Internal Reference Materials and Wording Guidelines</p>
         <h2 id="basis-title">근거자료와 표현 상 주의점</h2>
         <p>
           리본톡 기획 및 개발에 참고해야 할 주요한 내부 근거자료와,

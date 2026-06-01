@@ -1,9 +1,8 @@
 export type RoadmapStatus =
-  | "completed-base"
+  | "completed"
   | "in-progress"
   | "planned"
-  | "validation-needed"
-  | "long-term";
+  | "later";
 
 export type TaskCategory =
   | "development"
@@ -59,19 +58,17 @@ export interface ReadinessGroup {
 }
 
 export const statusLabels: Record<RoadmapStatus, string> = {
-  "completed-base": "보유 기반",
-  "in-progress": "설계·고도화",
+  completed: "완료",
+  "in-progress": "진행 중",
   planned: "구현 예정",
-  "validation-needed": "실증 필요",
-  "long-term": "장기 확산",
+  later: "후속 과제",
 };
 
 export const statusDescriptions: Record<RoadmapStatus, string> = {
-  "completed-base": "현재 보유한 프로토타입과 R&D 기반",
+  completed: "현재 보유한 프로토타입과 R&D 기반",
   "in-progress": "시제품 범위로 구체화할 핵심 설계",
   planned: "개발 범위 확정 뒤 구현할 기능",
-  "validation-needed": "파일럿 운영으로 확인할 단계",
-  "long-term": "기관 공급과 공공조달 확산을 위한 목표",
+  later: "파일럿, 인증, 기관 공급, 공공조달 확산을 위한 후속 과제",
 };
 
 export const checklistStatusLabels: Record<ChecklistStatus, string> = {
@@ -85,7 +82,7 @@ export const hero = {
   title: "리본톡 통합 로드맵",
   eyebrow: "re;borntalk",
   subtitle:
-    "재난임무종사자의 도덕손상 기반 AI 정신건강 관리 시스템을 시제품, 실증, 인증, 기관 공급까지 연결하는 개발·사업화 로드맵입니다.",
+    "재난임무종사자의 도덕손상 기반 AI 정신건강 관리 시스템 리본톡을 시제품, 실증, 인증, 기관 공급까지 연결하는 개발·사업화 로드맵입니다.",
   description:
     "리본톡은 소방공무원 등 재난임무종사자가 겪는 도덕손상, 외상 반응, 직무 스트레스를 통합 선별 문항을 통해 조기에 확인하고, 안정화 중심 초기개입과 자기자비 기반 회복 지원, 전문가 연계, 기관 단위 예방관리로 확장하는 AI 기반 정신건강 관리 서비스입니다.",
   finalGoal:
@@ -112,7 +109,7 @@ export const roadmapStages: RoadmapStage[] = [
     shortTitle: "기반 정리",
     title: "현재 제품 기반 및 시제품 범위 설정",
     timeframe: "2026 Q2",
-    status: "completed-base",
+    status: "in-progress",
     goal: "현재 구현된 웹앱, LLM, RAG, 관리자 대시보드 기반을 정리하고 리본톡 v1.0 시제품 범위를 설정합니다.",
     developmentTasks: [
       {
@@ -165,7 +162,7 @@ export const roadmapStages: RoadmapStage[] = [
     shortTitle: "모델·데이터",
     title: "통합 선별모델 및 RAG 데이터 구조 설계",
     timeframe: "2026 Q2-Q3",
-    status: "in-progress",
+    status: "planned",
     goal: "단축형 선별 모듈과 RAG 회복사례 구조를 설계합니다.",
     developmentTasks: [
       {
@@ -218,7 +215,7 @@ export const roadmapStages: RoadmapStage[] = [
     shortTitle: "시제품 구현",
     title: "통합 시제품 및 관리자 대시보드 구현",
     timeframe: "2026 Q3",
-    status: "planned",
+    status: "later",
     goal: "사용자 화면과 관리자 화면에서 선별, 개입, 추적, 알림을 실제로 확인할 수 있도록 구현합니다.",
     developmentTasks: [
       {
@@ -271,7 +268,7 @@ export const roadmapStages: RoadmapStage[] = [
     shortTitle: "실증 검증",
     title: "파일럿 실증 및 개선",
     timeframe: "2026 Q4 - 2027 Q1",
-    status: "validation-needed",
+    status: "later",
     goal: "소방공무원 대상 파일럿을 통해 사용성, 수용성, 운영 가능성, 조기 위험 신호 확인 가능성을 검증합니다.",
     developmentTasks: [
       {
@@ -325,7 +322,7 @@ export const roadmapStages: RoadmapStage[] = [
     shortTitle: "품질·인증",
     title: "품질·보안·성능 검증 및 인증 준비",
     timeframe: "2027 Q1-Q3",
-    status: "planned",
+    status: "later",
     goal: "기관 공급과 조달 진입을 위해 품질, 보안, 개인정보, AI 성능, 데이터 품질을 검증 가능한 문서와 시험자료로 준비합니다.",
     developmentTasks: [
       {
@@ -378,7 +375,7 @@ export const roadmapStages: RoadmapStage[] = [
     shortTitle: "기관 공급",
     title: "기관 공급 패키지화 및 공공조달 확산",
     timeframe: "2027 Q3 - 2028",
-    status: "long-term",
+    status: "later",
     goal: "소방본부·소방서가 실제 구매 검토할 수 있는 상품, 제안서, 가격, 운영 문서, 조달 등록 경로를 완성합니다.",
     developmentTasks: [
       {
@@ -464,8 +461,8 @@ export const readinessChecklist: ReadinessGroup[] = [
   {
     group: "제품 완성도",
     items: [
-      { title: "사용자 웹앱 v1.0 범위", status: "in-progress" },
-      { title: "통합 선별·라우팅 엔진", status: "in-progress" },
+      { title: "사용자 웹앱 v1.0 범위 확정", status: "in-progress" },
+      { title: "통합 선별·라우팅 엔진 개발", status: "in-progress" },
       { title: "심리 개입 콘텐츠 개발", status: "planned" },
       { title: "기관 관리자 대시보드", status: "later" },
       { title: "고위험 알림 흐름", status: "later" },

@@ -33,6 +33,7 @@ const sourceFiles = Object.fromEntries(
   collectSourceFiles("src").map((path) => [path, read(path)]),
 );
 
+const heroSource = read("src/components/Hero.tsx");
 const combined = Object.values({ ...files, ...sourceFiles }).join("\n");
 
 const requiredSections = [
@@ -99,6 +100,39 @@ if (stageCount < 6) {
   failures.push(`Expected at least 6 roadmap stages, found ${stageCount}`);
 }
 
+const roadmapBlockStart = files.data.indexOf("export const roadmapStages");
+const roadmapBlockEnd = files.data.indexOf("export const taskMatrix");
+const roadmapBlock =
+  roadmapBlockStart >= 0 && roadmapBlockEnd > roadmapBlockStart
+    ? files.data.slice(roadmapBlockStart, roadmapBlockEnd)
+    : "";
+const roadmapStageStatuses = [...roadmapBlock.matchAll(/status: "([^"]+)"/g)].map(
+  (match) => match[1],
+);
+const expectedRoadmapStageStatuses = [
+  "in-progress",
+  "planned",
+  "later",
+  "later",
+  "later",
+  "later",
+];
+
+if (
+  roadmapStageStatuses.length < expectedRoadmapStageStatuses.length ||
+  expectedRoadmapStageStatuses.some((status, index) => roadmapStageStatuses[index] !== status)
+) {
+  failures.push(
+    `Expected roadmap stage statuses ${expectedRoadmapStageStatuses.join(", ")}, found ${roadmapStageStatuses.join(", ")}`,
+  );
+}
+
+for (const legacyStatus of ["completed-base", "validation-needed", "long-term"]) {
+  if (files.data.includes(legacyStatus)) {
+    failures.push(`Legacy roadmap status remains in roadmap.ts: ${legacyStatus}`);
+  }
+}
+
 const checklistGroups = (files.data.match(/group: "/g) || []).length;
 if (checklistGroups < 6) {
   failures.push(`Expected at least 6 readiness groups, found ${checklistGroups}`);
@@ -106,6 +140,30 @@ if (checklistGroups < 6) {
 
 if (!files.css.includes("@media")) {
   failures.push("Responsive CSS media queries are missing");
+}
+
+if (!heroSource.includes("readinessChecklist")) {
+  failures.push("Hero must source its summary cards from readinessChecklist");
+}
+
+if (!heroSource.includes('status === "in-progress"')) {
+  failures.push('Hero must filter checklist items by status === "in-progress"');
+}
+
+if (heroSource.includes("hero.finalGoal") || heroSource.includes("hero.currentStage")) {
+  failures.push("Hero must not render the old finalGoal/currentStage summary cards");
+}
+
+if (!heroSource.includes("roadmapStages")) {
+  failures.push("Hero must source its right-side roadmap progress panel from roadmapStages");
+}
+
+if (!heroSource.includes('stage.status === "in-progress"')) {
+  failures.push('Hero must filter roadmap stages by stage.status === "in-progress"');
+}
+
+if (heroSource.includes("hero.keywords")) {
+  failures.push("Hero must not render the old keyword chips in the right-side panel");
 }
 
 if (failures.length > 0) {
